@@ -51,27 +51,29 @@ let arr =[
 
 
 // Задача 1
-let fullName = arr.map(user => ({
-    fName : `${user.first_name} ${user.last_name}`
-}));
-
+let fullName = arr.map(user => ({fName : `${user.first_name} ${user.last_name}`}));
 let nameString =  fullName.map(users => `${Object.values(users)}`).join(", ")
 console.log(nameString);
 
 // Задача 2
 let getAge = {
     average: arr.reduce((aver, user) => aver + user.age, 0) / arr.length, 
-    under30: arr.filter((a, b) => a.age > 30 ? 1 : 0).length,
-    under40: arr.filter((a, b) => a.age > 40 ? 1 : 0).length,
-    under18: arr.filter((a, b) => a.age > 18 ? 1 : 0).length,
+    under30: arr.filter((a, b) => a.age > 30 ).length,
+    under40: arr.filter((a, b) => a.age > 40 ).length,
+    under18: arr.filter((a, b) => a.age > 18 ).length,
 }
-
 console.log(getAge);
 
 
 // Задача 3
+let idName = arr.map(user => ({uId : user.id, uName: `${user.first_name} ${user.last_name}`})); 
+console.log(idName);
 
 
 // Задача 4
-let emailsArr = arr.filter((a) => a.email ).length
+let emailsArr = arr.map(mails => mails.email).sort((a, b) => a > b ? 1 : -1);
 console.log(emailsArr);
+
+// Задача 5
+let youngAge = arr.filter(user => user.age < 40).sort((a, b) => a.age > b.age ? 1 : -1);//????????????????????????????????????
+console.log(youngAge);
