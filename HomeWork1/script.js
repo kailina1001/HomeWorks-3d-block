@@ -55,6 +55,12 @@ let fullName = arr.map(user => ({fName : `${user.first_name} ${user.last_name}`}
 let nameString =  fullName.map(users => `${Object.values(users)}`).join(", ")
 console.log(nameString);
 
+
+/* let users1: string = users
+.map(({ first_name, last_name}) => `$(first_name) $(last_name)`)
+.join(", "); */// может часто где встечаться, как склеить строку
+// только с typeScript!!! тк заметки с типом (string) можно использовать только в файлах TypeScript 
+
 // Задача 2
 let getAge = {
     average: arr.reduce((aver, user) => aver + user.age, 0) / arr.length, 
@@ -96,3 +102,14 @@ console.log(obj); */
 /* let result = map.Set(arrLetters, arrFullNames)
 
 console.log(result); */
+/* 
+const user6 = users.reduce(acc, {last_name}) => {
+    const firstLetter = last_name[0].toLocalLowerCase();
+    if( lacc.hasOwnProperty(firstLetter)) {
+    
+    }
+
+    return firstLetter;
+} {})
+
+export {users6, users5, users4, users3, users2, users1}; */
