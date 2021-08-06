@@ -75,5 +75,24 @@ let emailsArr = arr.map(mails => mails.email).sort((a, b) => a > b ? 1 : -1);
 console.log(emailsArr);
 
 // Задача 5
-let youngAge = arr.filter(user => user.age < 40).sort((a, b) => a.age > b.age ? 1 : -1);//????????????????????????????????????
+let youngAge = arr.filter(user => user.age < 40).sort((a, b) => a.age > b.age ? 1 : -1);
 console.log(youngAge);
+
+// Задача 6
+let objLastName = {
+
+
+}
+let arrFilter = arr.map(user => user.last_name).join('').replace(/[^A-Z]/g, ' ').split('').filter(function(entry) { return entry.trim() != ''; }).sort((a, b) => a > b ? 1 : -1);
+let arrLetters = new Set(arrFilter);
+let arrFullNames = arr.map(user => user.last_name).sort((a, b) => a > b ? 1 : -1);
+
+console.log(arrLetters);
+console.log(arrFullNames);
+
+/* obj = { [arrLetters]: [arrFullNames] };
+
+console.log(obj); */
+/* let result = map.Set(arrLetters, arrFullNames)
+
+console.log(result); */
