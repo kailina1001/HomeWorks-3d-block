@@ -125,18 +125,28 @@ console.log(writerResult);
 
 // Задача 7 Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции
 // должен быть отфильтрованный массив, с фильмами где строка входит в название фильма.
-
-
+function task7(arr, str) {
+    const filmNames = arr.filter(item => item.title.split(" ").includes(str))
+    return filmNames
+}
+console.log(task7(arr, "Harry"));
 
 // Задача 8 Создать функцию, которая бы принимала массив фильмов и число. 
 //А результатом этой функции должен быть отфильтрованный массив, с фильмами где число равно году выхода фильма.
-
-
+function task8(arr, num) {
+    const filmYear = arr.filter(item => item.year === num)
+    return filmYear
+}
+console.log(task8(arr, 1977));
 
 
 // Задача 9 Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции
 // должен быть отфильтрованный массив, с фильмами где строка входит в название фильма или в его сюжет.
-
+function task9 (arr, str) {
+	const titlePlot = arr.filter( item => item.title.includes(str) || item.plot.includes(str))
+	return titlePlot
+}
+console.log(task9(arr, "boy"));
 
 
 // Задача 10 Создать функцию, которая бы принимала 3 параметра:
