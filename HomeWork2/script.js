@@ -96,15 +96,51 @@ const arr =
         
     ]
 
-    // Задача 1  Собрать в массив все жанры фильмов (без повторения)
-    /* const task1 = arr.map( films => (film.genre).join(", ")
-    console.log(task1) */
-    
+// Задача 1  Собрать в массив все жанры фильмов (без повторения)
+const genres = arr.map(a => a.genre).join(",").split(",");
+const genreResult = Array.from(new Set(genres));
+
+console.log(genreResult); 
+
+// Задача 2 Собрать в массив всех актеров всех фильмов (без повторения)
+const actors = arr.map(a => a.actors).join(",").split(",");
+const actorsResult = (new Set(actors));
+console.log(actorsResult);
+
+// Задача 3 Отсортировать фильмы по рейтингу по убыванию
+const filmRating = arr.sort((a, b) => a.imdbRating < b.imdbRating ? 1 : -1);
+console.log(filmRating);
+
+// Задача 4 Создать новый массив, где объекты фильмов будут состоять из следующих полей:
+// `id, title, released, plot`
+const someMass = arr.map(({id, title, released, plot}) => ({id, title, released, plot}));
+console.log(someMass);
+
+// Задача 5 Создать объект, где ключ это имя актера, а значение - массив из фильмов с его участием
+
+// Задача 6 Создать массив авторов (поле writer) без повторений
+const writer = arr.map(a => a.writer).join(",").replace(/\s*,\s*/g, ",").split(",");
+const writerResult = Array.from(new Set(writer));
+console.log(writerResult);
+
+// Задача 7 Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции
+// должен быть отфильтрованный массив, с фильмами где строка входит в название фильма.
 
 
-/*     let fullName = arr.map(user => ({fName : `${user.first_name} ${user.last_name}`}));
-let nameString =  fullName.map(users => `${Object.values(users)}`).join(", ")
-console.log(nameString); */
-/* 
-let idName = arr.map(user => ({uId : user.id, uName: `${user.first_name} ${user.last_name}`})); 
-console.log(idName); */
+
+// Задача 8 Создать функцию, которая бы принимала массив фильмов и число. 
+//А результатом этой функции должен быть отфильтрованный массив, с фильмами где число равно году выхода фильма.
+
+
+
+
+// Задача 9 Создать функцию, которая бы принимала массив фильмов и строку. А результатом этой функции
+// должен быть отфильтрованный массив, с фильмами где строка входит в название фильма или в его сюжет.
+
+
+
+// Задача 10 Создать функцию, которая бы принимала 3 параметра:
+// 1)массив фильмов , 2) строка(название поля, например 'title') и строку/число(значение поля "Black Widow").
+// А результатом этой функции должен быть отфильтрованный массив, где параметры 2 и 3 равны в объекте фильма.
+    //Например: передаем `(films, 'title', 'Black Widow')` и на выходе получаем фильм с id=1
+    //если передаем `(films, 'year', 2011)` , то получаем фильм с id=2
