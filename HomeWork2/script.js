@@ -77,6 +77,7 @@ const arr =
 					  production: "Heyday Films, Warner Bros.",
 				}, 
 				{
+					id: 5,
 						title: "Harry Potter and the Sorcerer's Stone",
 					  year: 2001,
 					  released: "16 Nov 2001",
@@ -117,6 +118,19 @@ const someMass = arr.map(({id, title, released, plot}) => ({id, title, released,
 console.log(someMass);
 
 // Задача 5 Создать объект, где ключ это имя актера, а значение - массив из фильмов с его участием
+const films = arr.reduce((actors, film) =>
+	film.actors.reduce((acc, actor) => {
+		if (!acc[actor]) {
+			return { ...acc, [actor]: [film] };
+		}
+		return { ...acc, [actor]: [...acc[actor], film] };
+	}, actors),
+
+	{}
+)
+console.log({ films });
+
+
 
 // Задача 6 Создать массив авторов (поле writer) без повторений
 const writer = arr.map(a => a.writer).join(",").replace(/\s*,\s*/g, ",").split(",");
@@ -130,6 +144,9 @@ function task7(arr, str) {
     return filmNames
 }
 console.log(task7(arr, "Harry"));
+// дописать чувствительность к регистру
+// upperCase и lowerCase!!!!!!!!!!!
+
 
 // Задача 8 Создать функцию, которая бы принимала массив фильмов и число. 
 //А результатом этой функции должен быть отфильтрованный массив, с фильмами где число равно году выхода фильма.
@@ -146,7 +163,9 @@ function task9 (arr, str) {
 	const titlePlot = arr.filter( item => item.title.includes(str) || item.plot.includes(str))
 	return titlePlot
 }
-console.log(task9(arr, "boy"));
+console.log(task9(arr, "School"));
+// дописать чувствительность к регистру
+// upperCase и lowerCase!!!!!!!!!!!
 
 
 // Задача 10 Создать функцию, которая бы принимала 3 параметра:
