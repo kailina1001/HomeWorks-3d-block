@@ -1,5 +1,4 @@
-const arr =
- [
+const arr = [
         {
 						id: 1,
 					    title: "Black Widow",
@@ -129,8 +128,6 @@ const films = arr.reduce((actors, film) =>
 	{}
 )
 console.log({ films });
-
-
 
 // Задача 6 Создать массив авторов (поле writer) без повторений
 const writer = arr.map(a => a.writer).join(",").replace(/\s*,\s*/g, ",").split(",");
