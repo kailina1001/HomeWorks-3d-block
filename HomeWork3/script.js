@@ -85,7 +85,8 @@ const ingridResult = Array.from(new Set(ingredients));
 console.log(ingridResult);
 
 //?? Task 2
-//Создать функцию, которая принимает массив продуктов и id, и возвращает продукт с таким же id.
+//Создать функцию, которая принимает массив продуктов и id,
+//и возвращает продукт с таким же id.
 
 const filterById = (arrayFood, id) =>
   arrayFood.filter((product) => product.id === id);
@@ -98,14 +99,19 @@ console.log(...filterById(arrayFood, 2));
 const showPrice = arrayFood.sort((big, small) => big.price - small.price);
 console.log(showPrice);
 
-//!! Task 4
-//Сгруппировать продукты по типам. Создать объект, где ключ это тип, а значение - массив с продуктами.
-/* const typeOfFood = arrayFood.reduce((acc, { last_name }) => {
-    const key = last_name[0].toLowerCase()
-    if (acc.hasOwnProperty(key)) return { ...acc, [key]: [...acc[key], last_name], }
-    return { ...acc, [key]: [last_name] }
-}, {})
-console.log(transformObj); */
+/* const createNewObj = arrayFood.reduce((acc, { type }) => {
+  return { ...acc, [type]: [...(acc[type] || []), { type }] };
+}, {});
+console.log(createNewObj); */
+
+//?? Task 4
+//Сгруппировать продукты по типам. Создать объект, где ключ это тип,
+// а значение - массив с продуктами.
+
+const createType = arrayFood.reduce((acc, { type }) => {
+  return { ...acc, [type]: [...(acc[type] || []), { type }] };
+}, {});
+console.log(createType);
 
 //?? Task 5
 //Создать массив с продуктами, которые доступны.
@@ -128,36 +134,80 @@ const giveIngredient = (arr, str) =>
   arrayFood.filter((item) => item.ingredients.includes(str));
 console.log(giveIngredient(arrayFood, "chicken"));
 
-/* function giveProducts (arr, str) {
-	const someProducts = arrayFood.filter( item => item.ingredients.includes(str) )
-	return someProducts
-}
-console.log(giveProducts(arrayFood, "chicken")); */
-
-//!! Task 7
+//?? Task 7
 //Создать функцию, которая принимает массив продуктов и массив ингредиентов,
 // и возвращает массив с продуктами, где содержатся такие ингредиенты.
 
+const filterByIngredients = (massOfProducts, massOfIngredients) => {
+  return arrayFood.filter(
+    (food) =>
+      [...new Set([...food.ingredients, ...massOfIngredients])].join() ===
+      food.ingredients.join()
+  );
+};
+console.log(filterByIngredients(arrayFood, ["cheese", "flour"]));
+
 //?? Task 8
-//Создать функцию, которая принимает массив продуктов и цену, и возвращает массив продуктов,
+//Создать функцию, которая принимает массив продуктов и цену, и возвращает
+//массив продуктов,
 //где цена продукта ниже или равна цене из второго аргумента функции.
 
 const showProductPrice = (arr, num) =>
   arrayFood.filter((item) => item.price <= num);
 console.log(showProductPrice(arrayFood, 2));
 
-//!! Task 9
+//?? Task 9
 //Создать функцию, которая принимает массив продуктов и массив айдишников,
-// и возвращает строку, где строка включает в себя название продуктов и их цену через запятую, у которых айдишники совпадают.
+// и возвращает строку, где строка включает в себя название продуктов и их
+//цену через запятую, у которых айдишники совпадают.
 //Например: `"Биг Тейсти: цена 4€, Картофель по-деревенски: 2$"`
+
+const findByid = (foodarr, foodId) => {
+  return foodarr
+    .filter((item) => foodId.includes(item.id))
+    .map(
+      (item) =>
+        `${item.name}: ${item.price}${item.currency == "euro" ? "€" : "$"}`
+    )
+    .join(", ");
+};
+console.log(findByid(arrayFood, [1, 3, 4]));
 
 //!! Task 10
 // Создать функцию, которая принимает массив продуктов и массив айдишников,
-// и возвращает объект, c общими суммами цен продуктов(у которых айдишники совпадают) по каждой валюте.
-//  Например: `{ euro: 20, usd: 6}`
+// и возвращает объект, c общими суммами цен продуктов(у которых айдишники совпадают)
+// по каждой валюте.  Например: `{ euro: 20, usd: 6}`
+
+/* const totalPrice = (foodarr, foodId) => {
+  return foodarr
+      .reduce (acc, curr) => {
+        if (curr.currency === "usd") {
+          return 
+        }
+      }   */
+/* .filter((item) => foodId.includes(item.id))
+    .reduce((item) => {
+      if (item.currency === "euro") {
+        euro = item.price;
+      } else {
+        usd = item.price;
+      }
+    }); */
+/*   .map(function (item) {
+      return item.price;
+    })
+    .reduce(function (a, b) {
+      return a + b;
+    }); */
+/* .map(
+        (item) => `${item.currency == "euro" ? "euro" : "usd"}: ${item.price}`
+      ) */
+/* };
+console.log(totalPrice(arrayFood, [4, 5, 6, 8])); */
 
 //!! Task 11
 //Создать функцию, которая принимает массив продуктов и массив айдишников,
 //и строку, где число равно сумме цен продуктов + значок валюты.
 //При этом если, у нас попадают продукты с разными валютами,
-//то мы должны получить сумму в евро и перевести доллары в евро(использовать для этого курс евро/доллар).
+//то мы должны получить сумму в евро и перевести доллары в евро
+//(использовать для этого курс евро/доллар).
