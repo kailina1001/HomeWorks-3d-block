@@ -173,37 +173,38 @@ const findByid = (foodarr, foodId) => {
 };
 console.log(findByid(arrayFood, [1, 3, 4]));
 
-//!! Task 10
+//?? Task 10
 // Создать функцию, которая принимает массив продуктов и массив айдишников,
 // и возвращает объект, c общими суммами цен продуктов(у которых айдишники совпадают)
 // по каждой валюте.  Например: `{ euro: 20, usd: 6}`
 
-/* const totalPrice = (foodarr, foodId) => {
-  return foodarr
-      .reduce (acc, curr) => {
-        if (curr.currency === "usd") {
-          return 
-        }
-      }   */
-/* .filter((item) => foodId.includes(item.id))
-    .reduce((item) => {
-      if (item.currency === "euro") {
-        euro = item.price;
-      } else {
-        usd = item.price;
+const totalPrice = (foodarr, foodId) => {
+  let arrById = foodarr.filter((item) => foodId.includes(item.id));
+  let sumEuro = arrById
+    .map((item) => (item.currency === "euro" ? item.price : 0))
+    .reduce((a, b) => a + b);
+  let sumUsd = arrById
+    .map((item) => (item.currency === "usd" ? item.price : 0))
+    .reduce((a, b) => a + b);
+  return { euro: sumEuro, usd: sumUsd };
+};
+
+console.log(totalPrice(arrayFood, [1, 3, 4]));
+
+//!!Алесино решение
+const objectFromProductsByCurrency = (products, enterId) => {
+  return products.reduce(
+    (acc, product) => {
+      let { id, currency, price } = product;
+      if (enterId.includes(id)) {
+        return { ...acc, [currency]: acc[currency] + price };
       }
-    }); */
-/*   .map(function (item) {
-      return item.price;
-    })
-    .reduce(function (a, b) {
-      return a + b;
-    }); */
-/* .map(
-        (item) => `${item.currency == "euro" ? "euro" : "usd"}: ${item.price}`
-      ) */
-/* };
-console.log(totalPrice(arrayFood, [4, 5, 6, 8])); */
+      return acc;
+    },
+    { euro: 0, usd: 0 }
+  );
+};
+console.log(objectFromProductsByCurrency(arrayFood, [1, 3, 4]));
 
 //!! Task 11
 //Создать функцию, которая принимает массив продуктов и массив айдишников,
